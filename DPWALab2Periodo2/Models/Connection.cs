@@ -10,7 +10,7 @@ namespace DPWALab2Periodo2.Models
 {
     public class Connection
     {
-        SqlConnection connection;
+        public SqlConnection connection;
 
         string connectionString =
             @"Data Source = localhost\SQLEXPRESS;

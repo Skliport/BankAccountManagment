@@ -39,58 +39,96 @@ namespace DPWALab2Periodo2.Models
         // 1. Recuperar una Cuenta de Banco específica por número de cuenta.
         public BankAccount GetBankAccount(string accountNumber)
         {
-            connection = new Connection();
-            string query = $"SELECT * FROM bank_account WHERE account_number = '{accountNumber}';";
-            
-            sqlDataReader = connection.reader(query);
-            if (sqlDataReader.Read())
+            try
             {
-                BankAccount bankAccount = new BankAccount();
-                bankAccount.bankAccountId = Convert.ToInt32(sqlDataReader[0]);
-                bankAccount.number = sqlDataReader[1].ToString();
-                bankAccount.name = sqlDataReader[2].ToString();
-                bankAccount.password = sqlDataReader[3].ToString();
-                bankAccount.balance = Convert.ToDouble(sqlDataReader[4].ToString());
-                bankAccount.openingDate = Convert.ToDateTime(sqlDataReader[5].ToString());
+                connection = new Connection();
+                string query = $"SELECT * FROM bank_account WHERE account_number = '{accountNumber}';";
 
-                return bankAccount;
+                sqlDataReader = connection.reader(query);
+                if (sqlDataReader.Read())
+                {
+                    BankAccount bankAccount = new BankAccount();
+                    bankAccount.bankAccountId = Convert.ToInt32(sqlDataReader[0]);
+                    bankAccount.number = sqlDataReader[1].ToString();
+                    bankAccount.name = sqlDataReader[2].ToString();
+                    bankAccount.password = sqlDataReader[3].ToString();
+                    bankAccount.balance = Convert.ToDouble(sqlDataReader[4].ToString());
+                    bankAccount.openingDate = Convert.ToDateTime(sqlDataReader[5].ToString());
+
+                    return bankAccount;
+                }
+                else return null;
             }
-            else return null;
+            finally
+            {
+                connection.connection.Close();
+            }       
         }
 
         // 2. Recuperar lista de Cuentas de Banco.
         public List<BankAccount> GetBankAccountsList()
         {
-            connection = new Connection();
-            List<BankAccount>  lBankAccounts = new List<BankAccount>();
-
-            sqlDataReader = connection.reader("SELECT * FROM bank_account");
-            while (sqlDataReader.Read())
+            try
             {
-                BankAccount bankAccount = new BankAccount();
-                bankAccount.bankAccountId = Convert.ToInt32(sqlDataReader[0]);
-                bankAccount.number = sqlDataReader[1].ToString();
-                bankAccount.name = sqlDataReader[2].ToString();
-                bankAccount.password = sqlDataReader[3].ToString();
-                bankAccount.balance = Convert.ToDouble(sqlDataReader[4].ToString());
-                bankAccount.openingDate = Convert.ToDateTime(sqlDataReader[5].ToString());
+                connection = new Connection();
+                List<BankAccount> lBankAccounts = new List<BankAccount>();
 
-                lBankAccounts.Add(bankAccount);
+                sqlDataReader = connection.reader("SELECT * FROM bank_account");
+                while (sqlDataReader.Read())
+                {
+                    BankAccount bankAccount = new BankAccount();
+                    bankAccount.bankAccountId = Convert.ToInt32(sqlDataReader[0]);
+                    bankAccount.number = sqlDataReader[1].ToString();
+                    bankAccount.name = sqlDataReader[2].ToString();
+                    bankAccount.password = sqlDataReader[3].ToString();
+                    bankAccount.balance = Convert.ToDouble(sqlDataReader[4].ToString());
+                    bankAccount.openingDate = Convert.ToDateTime(sqlDataReader[5].ToString());
+
+                    lBankAccounts.Add(bankAccount);
+                }
+                return lBankAccounts;
             }
-            return lBankAccounts;
+            finally
+            {
+                connection.connection.Close();
+            }      
         }
 
         // 3. Recuperar un id de registro específico en bank_account con número de cuenta.
         public int GetBankAccountId(string accountNumber)
         {
-            connection = new Connection();
-            string query = $"SELECT bank_account_id FROM bank_account WHERE account_number = '{accountNumber}';";
-            sqlDataReader = connection.reader(query);
-            sqlDataReader.Read();
-            return Convert.ToInt32(sqlDataReader[0].ToString());
+            try
+            {
+                connection = new Connection();
+                string query = $"SELECT bank_account_id FROM bank_account WHERE account_number = '{accountNumber}';";
+                sqlDataReader = connection.reader(query);
+                sqlDataReader.Read();
+                return Convert.ToInt32(sqlDataReader[0].ToString());
+            }
+            finally
+            {
+                connection.connection.Close();
+            }     
         }
 
-        // 4. Registra una cuenta de banco con un número, nombre y password.
+        // 4. Recuperar un numero de cuenta de registro específico por bank_account_id.
+        public string GetBankAccountNumber(int bankAccountId)
+        {
+            try
+            {
+                connection = new Connection();
+                string query = $"SELECT account_number FROM bank_account WHERE bank_account_id = '{bankAccountId}';";
+                sqlDataReader = connection.reader(query);
+                sqlDataReader.Read();
+                return sqlDataReader[0].ToString();
+            }
+            finally
+            {
+                connection.connection.Close();
+            }
+        }
+
+        // 5. Registra una cuenta de banco con un número, nombre y password.
         public void RegisterBankAccount(string number, string name, string password)
         {
             connection = new Connection();
@@ -105,15 +143,22 @@ namespace DPWALab2Periodo2.Models
             }
         }
 
-        // 5. Inicio de sesión.
+        // 6. Inicio de sesión.
         public bool AuthenticateUser(string accountNumber, string password)
         {
-            connection = new Connection();
-            sqlDataReader = connection.reader($@"SELECT COUNT(*) FROM bank_account 
-            WHERE account_number = '{accountNumber}' AND account_password = '{password}';");
+            try
+            {
+                connection = new Connection();
+                sqlDataReader = connection.reader($@"SELECT COUNT(*) FROM bank_account 
+                WHERE account_number = '{accountNumber}' AND account_password = '{password}';");
 
-            sqlDataReader.Read();
-            if (Convert.ToInt32(sqlDataReader[0]) == 1) {return true;} else return false;
+                sqlDataReader.Read();
+                if (Convert.ToInt32(sqlDataReader[0]) == 1) { return true; } else return false;
+            }
+            finally
+            {
+                connection.connection.Close();
+            }          
         }
     }
 }

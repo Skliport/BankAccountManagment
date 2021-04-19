@@ -311,16 +311,16 @@
                                CssClass="table table-bordered table-striped table-scrollbar">
                                <Columns>
                                    <asp:BoundField DataField="codigoTransaccionCC" HeaderText="Código">
-                                   <HeaderStyle Width="80px" />
+                                   <HeaderStyle Width="50px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="tipoTransaccionCC" HeaderText="Tipo">
-                                   <HeaderStyle Width="200px" />
+                                   <HeaderStyle Width="280px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="montoTransaccionCC" HeaderText="Monto">
-                                   <HeaderStyle Width="200px" />
+                                   <HeaderStyle Width="150px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="fechaTransaccionCC" HeaderText="Fecha" >
-                                   <HeaderStyle Width="200px" />
+                                   <HeaderStyle Width="220px" />
                                    </asp:BoundField>
                                 </Columns>
                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -366,13 +366,13 @@
                                HorizontalAlign="Center">
                                <Columns>
                                    <asp:BoundField DataField="codigoTransaccionCA" HeaderText="Código">
-                                   <HeaderStyle Width="80" />
+                                   <HeaderStyle Width="50px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="tipoTransaccionCA" HeaderText="Tipo">
-                                   <HeaderStyle Width="200px" />
+                                   <HeaderStyle Width="280px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="montoTransaccionCA" HeaderText="Monto">
-                                   <HeaderStyle Width="200px" />
+                                   <HeaderStyle Width="150px" />
                                    </asp:BoundField>
                                    <asp:BoundField DataField="fechaTransaccionCA" HeaderText="Fecha" >
                                    <HeaderStyle Width="200px" />
@@ -414,24 +414,24 @@
                                CssClass="table table-bordered table-striped table-scrollbar" 
                                HorizontalAlign="Center">
                                <Columns>
-                                   <asp:BoundField DataField="codigoDeposito" HeaderText="Código">
-                                   <HeaderStyle Width="60px" />
-                                   </asp:BoundField>
-                                   <asp:BoundField DataField="montoDeposito" HeaderText="Monto">
-                                   <HeaderStyle Width="200px" />
-                                   </asp:BoundField>
-                                   <asp:BoundField DataField="interesDeposito" HeaderText="Interés mensual" >
-                                   <HeaderStyle Width="200px" />
-                                   </asp:BoundField>
-                                   <asp:BoundField DataField="mesesDeposito" HeaderText="Meses" >
-                                   <HeaderStyle Width="80px" />
-                                   </asp:BoundField>
-                                   <asp:BoundField DataField="fechaInicioDeposito" HeaderText="Inicio" >
-                                   <HeaderStyle Width="200px" />
-                                   </asp:BoundField>
-                                   <asp:BoundField DataField="fechaFinDeposito" HeaderText="Fin" >
-                                   <HeaderStyle Width="200px" />
-                                   </asp:BoundField>
+                                    <asp:BoundField DataField="codigoDeposito" HeaderText="Código">
+                                    <HeaderStyle Width="50px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="montoDeposito" HeaderText="Monto">
+                                    <HeaderStyle Width="120px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="interesDeposito" HeaderText="Interés" >
+                                    <HeaderStyle Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="mesesDeposito" HeaderText="Meses" >
+                                    <HeaderStyle Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="fechaInicioDeposito" HeaderText="Fecha de Transacción" >
+                                    <HeaderStyle Width="240px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="fechaFinDeposito" HeaderText="Fecha de Recepción" >
+                                    <HeaderStyle Width="220px" />
+                                    </asp:BoundField>
                                 </Columns>
                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />

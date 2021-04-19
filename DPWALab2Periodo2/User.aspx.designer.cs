@@ -321,6 +321,15 @@ namespace DPWALab2Periodo2
         protected global::System.Web.UI.WebControls.Button btnRetirarCC;
 
         /// <summary>
+        /// btnRetirarYDesactivarCC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRetirarYDesactivarCC;
+
+        /// <summary>
         /// lblAvisoTransaccionCC control.
         /// </summary>
         /// <remarks>
@@ -429,6 +438,15 @@ namespace DPWALab2Periodo2
         protected global::System.Web.UI.WebControls.Button btnRetirarCA;
 
         /// <summary>
+        /// btnRetirarYDesactivarCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRetirarYDesactivarCA;
+
+        /// <summary>
         /// lblAvisoTransaccionCA control.
         /// </summary>
         /// <remarks>
@@ -499,15 +517,6 @@ namespace DPWALab2Periodo2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMesesDP;
-
-        /// <summary>
-        /// txtFechaFinDP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFinDP;
 
         /// <summary>
         /// btnDepositarDP control.

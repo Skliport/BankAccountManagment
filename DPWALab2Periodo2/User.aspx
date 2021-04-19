@@ -2,12 +2,34 @@
 <link href="Content/bootstrap.css" rel="stylesheet"> 
 <link href="Content/bootstrap.min.css" rel="stylesheet"> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>DPWA - User</title>
+
+    <script>
+        $(document).ready(function () {
+            $("#ddlMesesDP").change(function () {
+                $("#txtInteresDP").val($(this).val());
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function callConfirmCC() {
+            $("#btnRetirarYDesactivarCC").click();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function callConfirmCA() {
+            $("#btnRetirarYDesactivarCA").click();
+        }
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -289,6 +311,12 @@
                                         ('¿Está seguro que desea retirar este monto?');" OnClick="btnRetirarCC_Click"/>
                                     </div>
 
+                                    <asp:Button ID="btnRetirarYDesactivarCC" 
+                                    runat="server"
+                                    OnClientClick="return confirm
+                                    ('El saldo pendiente será inferior a 1 USD ¿Está seguro que desea continuar esta transacción y desactivar su cuenta corriente?');" 
+                                    style="display:none" OnClick="btnRetirarYDesactivarCC_Click"/>  
+
                                     <div style="padding-top:5px;">
                                         <asp:Label 
                                             ID="lblAvisoTransaccionCC" 
@@ -306,16 +334,16 @@
                                    CssClass="table table-bordered table-striped table-scrollbar">
                                    <Columns>
                                        <asp:BoundField DataField="codigoTransaccionCC" HeaderText="Código">
-                                       <HeaderStyle Width="80px" />
+                                       <HeaderStyle Width="50px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="tipoTransaccionCC" HeaderText="Tipo">
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="280px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="montoTransaccionCC" HeaderText="Monto">
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="150px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="fechaTransaccionCC" HeaderText="Fecha" >
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="220px" />
                                        </asp:BoundField>
                                     </Columns>
                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -394,6 +422,12 @@
                                         ('¿Está seguro que desea retirar este monto?');" OnClick="btnRetirarCA_Click"/>
                                     </div>
 
+                                    <asp:Button ID="btnRetirarYDesactivarCA" 
+                                    runat="server"
+                                    OnClientClick="return confirm
+                                    ('El saldo pendiente será inferior a 1 USD ¿Está seguro que desea continuar esta transacción y desactivar su cuenta corriente?');" 
+                                    style="display:none" OnClick="btnRetirarYDesactivarCA_Click"/> 
+
                                     <div style="padding-top:5px;">
                                         <asp:Label 
                                             ID="lblAvisoTransaccionCA" runat="server" ForeColor="#EC1354">
@@ -410,16 +444,16 @@
                                    HorizontalAlign="Center">
                                    <Columns>
                                        <asp:BoundField DataField="codigoTransaccionCA" HeaderText="Código">
-                                       <HeaderStyle Width="80px" />
+                                       <HeaderStyle Width="50px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="tipoTransaccionCA" HeaderText="Tipo">
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="280px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="montoTransaccionCA" HeaderText="Monto">
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="150px" />
                                        </asp:BoundField>
                                        <asp:BoundField DataField="fechaTransaccionCA" HeaderText="Fecha" >
-                                       <HeaderStyle Width="200px" />
+                                       <HeaderStyle Width="220px" />
                                        </asp:BoundField>
                                     </Columns>
                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -467,25 +501,16 @@
                                     <label>Interés mensual:</label>
                                     <asp:TextBox 
                                         ID="txtInteresDP" CssClass="form-control mb-2" runat="server"
-                                        ReadOnly="True" style="text-align:center"> </asp:TextBox>
+                                        ReadOnly="True" style="text-align:center">0.50 %</asp:TextBox>
 
                                     <label>Cantidad de meses:</label>
                                     <asp:DropDownList 
                                         ID="ddlMesesDP" CssClass="form-control mb-2" runat="server" 
                                         style="text-align:center">
-                                        <asp:ListItem>2</asp:ListItem>
-                                        <asp:ListItem>4</asp:ListItem>
-                                        <asp:ListItem>6</asp:ListItem>
-                                        <asp:ListItem>8</asp:ListItem>
-                                        <asp:ListItem>10</asp:ListItem>
-                                        <asp:ListItem>12</asp:ListItem>
+                                        <asp:ListItem Text="1" Value="0.50 %" />
+                                        <asp:ListItem Text="4" Value="0.75 %" />
+                                        <asp:ListItem Text="6" Value="1.00 %" />
                                     </asp:DropDownList>
-
-                                    <label>Fecha de recepción:</label>
-                                    <asp:TextBox 
-                                        ID="txtFechaFinDP" CssClass="form-control mb-2" 
-                                        runat="server" ReadOnly="True"
-                                        style="text-align:center"> </asp:TextBox>
 
                                     <div style="padding-top:10px;">
                                         <asp:Button ID="btnDepositarDP" 
@@ -510,24 +535,24 @@
                                    CssClass="table table-bordered table-striped table-scrollbar" 
                                    HorizontalAlign="Center">
                                    <Columns>
-                                       <asp:BoundField DataField="codigoDeposito" HeaderText="Código">
-                                       <HeaderStyle Width="60px" />
-                                       </asp:BoundField>
-                                       <asp:BoundField DataField="montoDeposito" HeaderText="Monto">
-                                       <HeaderStyle Width="200px" />
-                                       </asp:BoundField>
-                                       <asp:BoundField DataField="interesDeposito" HeaderText="Interés mensual" >
-                                       <HeaderStyle Width="200px" />
-                                       </asp:BoundField>
-                                       <asp:BoundField DataField="mesesDeposito" HeaderText="Meses" >
-                                       <HeaderStyle Width="80px" />
-                                       </asp:BoundField>
-                                       <asp:BoundField DataField="fechaInicioDeposito" HeaderText="Inicio" >
-                                       <HeaderStyle Width="200px" />
-                                       </asp:BoundField>
-                                       <asp:BoundField DataField="fechaFinDeposito" HeaderText="Fin" >
-                                       <HeaderStyle Width="200px" />
-                                       </asp:BoundField>
+                                        <asp:BoundField DataField="codigoDeposito" HeaderText="Código">
+                                        <HeaderStyle Width="50px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="montoDeposito" HeaderText="Monto">
+                                        <HeaderStyle Width="120px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="interesDeposito" HeaderText="Interés" >
+                                        <HeaderStyle Width="60px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="mesesDeposito" HeaderText="Meses" >
+                                        <HeaderStyle Width="60px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="fechaInicioDeposito" HeaderText="Fecha de Transacción" >
+                                        <HeaderStyle Width="240px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="fechaFinDeposito" HeaderText="Fecha de Recepción" >
+                                        <HeaderStyle Width="220px" />
+                                        </asp:BoundField>
                                     </Columns>
                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                    <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
